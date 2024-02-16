@@ -51,24 +51,24 @@ def prepare_data(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark_nnij
     for name_ in grups_nnij:
         for_groups.append((name_))
 
-    for_students = []  # для таблиці students_nnij
+    for_students = []  # для таблиці student_nnij
     for student in student_nnij:
        for_students.append((student, randint(1, NUMBER_GROUPS)))
 
-    for_teachers = [] # для таблиці teachers_nnij
-    for teacher in teachers_nnij:
+    for_teachers = [] # для таблиці teacher_nnij
+    for teacher in teacher_nnij:
         for_teachers.append((teacher, randint(1, NUMBER_GROUPS)))
         
-    for_subjects = [] # для таблиці subjects_nnij     
+    for_subjects = [] # для таблиці subject_nnij     
     for subject_ in subject_nnij:
         for_subjects.append((subject_, randint(1, NUMBER_TEACHERS)))
         
-    for_marks = [] # для таблиці marks_nnij   
+    for_marks = [] # для таблиці mark_nnij   
     ns = 1
     ns1 = 1
     nd = 1
     nd1 = 1
-    for mark in mark_nnij:
+    for _ in NUMBER_MARKS:
         
         if ns == NUMBER_SUBJECTS + 1:
             ns = 1
@@ -76,7 +76,7 @@ def prepare_data(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark_nnij
         if nd == NUMBER_SUBJECTS + 1:
             nd = 1
             nd1 = 1
-        for_marks.append((ns1, nd1, mark))
+        for_marks.append((ns1, nd1, randint(60, 100), randint(60, 100), randint(60, 100), randint(60, 100), randint(60, 100)))
         ns += 1
         nd += 1
         nd1 += 1
@@ -93,17 +93,17 @@ def insert_data_to_db(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark
         '''Заповнюємо таблицю груп. І створюємо скрипт для вставлення, де змінні, які вставлятимемо, відзначимо
         знаком заповнювача (?) '''
 
-        sql_to_groups_nnij = """INSERT INTO groups_nnij(name_)
+        sql_to_groups_nnij = """INSERT INTO grups_nnij(name_)
                                VALUES (?)"""
 
         '''Для вставлення відразу всіх даних скористаємося методом executemany курсора. Першим параметром буде текст
         скрипта, а другим - дані (список кортежів).'''
 
-        cur.executemany(sql_to_groups_nnij, groups_nnij)
+        cur.executemany(sql_to_groups_nnij, grups_nnij)
 
         # Далі вставляємо дані про студентів. Напишемо для нього скрипт і вкажемо змінні
 
-        sql_to_students_nnij = """INSERT INTO students_nnij(student, groups_nnij_id)
+        sql_to_students_nnij = """INSERT INTO student_nnij(student, grups_nnij_id)
                                VALUES (?, ?)"""
 
         # Дані були підготовлені заздалегідь, тому просто передаємо їх у функцію
@@ -111,7 +111,7 @@ def insert_data_to_db(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark
         cur.executemany(sql_to_students_nnij, student_nnij)
         
         
-        sql_to_teachers_nnij = """INSERT INTO teachers_nnij(teacher, groups_nnij_id)
+        sql_to_teachers_nnij = """INSERT INTO teacher_nnij(teacher, grups_nnij_id)
                                VALUES (?, ?)"""
 
         # Дані були підготовлені заздалегідь, тому просто передаємо їх у функцію
@@ -119,7 +119,7 @@ def insert_data_to_db(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark
         cur.executemany(sql_to_teachers_nnij, teacher_nnij)
         
         
-        sql_to_subjects_nnij = """INSERT INTO subjects_nnij(subject_, teachers_nnij_id)
+        sql_to_subjects_nnij = """INSERT INTO subject_nnij(subject_, teacher_nnij_id)
                                VALUES (?, ?)"""
 
         # Дані були підготовлені заздалегідь, тому просто передаємо їх у функцію
@@ -129,7 +129,7 @@ def insert_data_to_db(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark
 
         # Останньою заповнюємо таблицю 
 
-        sql_to_marks_nnij = """INSERT INTO marks_nnij(students_nnij_id, subjects_nnij_id, mark)
+        sql_to_marks_nnij = """INSERT INTO mark_nnij(student_nnij_id, subject_nnij_id, mark)
                               VALUES (?, ?, ?)"""
 
         # Вставляємо дані про зарплати

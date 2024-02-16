@@ -44,7 +44,11 @@ CREATE TABLE mark_nnij (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_nnij_id INTEGER,
     subject_nnij_id INTEGER,
-    mark INTEGER,
+    mark1 INTEGER,
+    mark2 INTEGER,
+    mark3 INTEGER,
+    mark4 INTEGER,
+    mark5 INTEGER,
     FOREIGN KEY (student_nnij_id) REFERENCES student_nnij (id)
       ON DELETE CASCADE
       ON UPDATE CASCADE
