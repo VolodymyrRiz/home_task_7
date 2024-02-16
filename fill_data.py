@@ -1,8 +1,8 @@
 from datetime import datetime
-import faker
 import random
 from random import randint, choice
 import sqlite3
+import faker
 
 NUMBER_GROUPS = 3
 NUMBER_STUDENTS = 30
@@ -68,7 +68,7 @@ def prepare_data(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark_nnij
     ns1 = 1
     nd = 1
     nd1 = 1
-    for _ in NUMBER_MARKS:
+    for _ in range(NUMBER_MARKS):
         
         if ns == NUMBER_SUBJECTS + 1:
             ns = 1
@@ -129,8 +129,8 @@ def insert_data_to_db(grups_nnij, student_nnij, teacher_nnij, subject_nnij, mark
 
         # Останньою заповнюємо таблицю 
 
-        sql_to_marks_nnij = """INSERT INTO mark_nnij(student_nnij_id, subject_nnij_id, mark)
-                              VALUES (?, ?, ?)"""
+        sql_to_marks_nnij = """INSERT INTO mark_nnij(student_nnij_id, subject_nnij_id, mark1, mark2, mark3, mark4, mark5)
+                              VALUES (?, ?, ?, ?, ?, ?, ?)"""
 
         # Вставляємо дані про зарплати
 
