@@ -1,15 +1,17 @@
 [tool.poetry]
-name = "home-task-7"
+name = "nnij-bd"
 version = "0.1.0"
-description = "For HT7"
+description = "BAse"
 authors = ["VolodymyrRiz <v.v.rizun@gmail.com>"]
-license = "MTM"
+license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-sqlalchemy = "^2.0.27"
 alembic = "^1.13.1"
+sqlalchemy = "^2.0.27"
+faker = "^23.2.1"
+psycopg2 = "^2.9.9"
 
 
 [build-system]
