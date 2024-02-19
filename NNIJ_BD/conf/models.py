@@ -46,8 +46,16 @@ class Subject(Base):
 class Mark(Base):
     __tablename__ = "marks"
     id = Column(Integer, primary_key=True)
-    subject_name = Column(String(200))
-    created = Column(DateTime, default=datetime.now())     
+    nark1 = Column(Integer())
+    created1 = Column(DateTime, default=datetime.now()) 
+    mark2 = Column(Integer())
+    created2 = Column(DateTime, default=datetime.now())
+    mark3 = Column(Integer())
+    created3 = Column(DateTime, default=datetime.now())
+    mark4 = Column(Integer())
+    created4 = Column(DateTime, default=datetime.now())
+    mark5 = Column(Integer())
+    created5 = Column(DateTime, default=datetime.now())
     studentsmarks = relationship(argument='Student', secondary='students_to_marks', back_populates='marks')
     subjectsmarks = relationship(argument='Subject', secondary='subjects_to_marks', back_populates='marks_sub')
     
