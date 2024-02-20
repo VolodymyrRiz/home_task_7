@@ -117,5 +117,3 @@ class SubjectStudent(Base):
     subjstud_id = Column(Integer, ForeignKey('subjects.id', ondelete='CASCADE', onupdate='CASCADE'))
     studsubj_id = Column(Integer, ForeignKey('students.id', ondelete='CASCADE', onupdate='CASCADE'))
 
-
-    
