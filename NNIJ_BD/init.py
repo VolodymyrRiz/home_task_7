@@ -70,48 +70,48 @@ def insert_groups():
         )
         session.add(group)    
 
-def insert_rel1():   
+def insert_rel():   
     students = session.query(Student).all()
     teachers = session.query(Teacher).all()
     
-    # teachersubs = session.query(Teacher).all()
-    # subjects = session.query(Subject).all()
+    teachersubs = session.query(Teacher).all()
+    subjects = session.query(Subject).all()
     
-    # studentmarks = session.query(Student).all()
-    # markstuds = session.query(Mark).all()
+    studentmarks = session.query(Student).all()
+    markstuds = session.query(Mark).all()
     
-    # subjmarks = session.query(Subject).all()
-    # marksubjs = session.query(Mark).all()
+    subjmarks = session.query(Subject).all()
+    marksubjs = session.query(Mark).all()
     
-    # groups = session.query(Group).all()
-    # groupstuds = session.query(Student).all()
+    groups = session.query(Group).all()
+    groupstuds = session.query(Student).all()
     
-    # groupteachs = session.query(Group).all()
-    # teachgroups = session.query(Teacher).all()
+    groupteachs = session.query(Group).all()
+    teachgroups = session.query(Teacher).all()
     
-    # subjstuds = session.query(Subject).all()
-    # studsubjs = session.query(Student).all()
+    subjstuds = session.query(Subject).all()
+    studsubjs = session.query(Student).all()
     
     for student in students:
         rel = TeacherStudent(teacher_id=random.choice(teachers).id, student_id=student.id)
         
-    # for subject in subjects:
-    #     rel = TeacherSubject(teachersub_id=random.choice(teachersubs).id, subject_id=subject.id)
+    for subject in subjects:
+        rel = TeacherSubject(teachersub_id=random.choice(teachersubs).id, subject_id=subject.id)
         
-    # for studentmark in studentmarks:
-    #     rel = StudentMark(markstud_id=random.choice(markstuds).id, studentmark_id=studentmark.id)    
+    for studentmark in studentmarks:
+        rel = StudentMark(markstud_id=random.choice(markstuds).id, studentmark_id=studentmark.id)    
         
-    # for subjmark in subjmarks:
-    #     rel = SubjectMark(marksubj_id=random.choice(marksubjs).id, subjmark_id=subjmark.id)
+    for subjmark in subjmarks:
+        rel = SubjectMark(marksubj_id=random.choice(marksubjs).id, subjmark_id=subjmark.id)
         
-    # for group in groups:
-    #     rel = GroupStudent(groupstud_id=groupstuds.id, group_id=group.id)
+    for group in groups:
+        rel = GroupStudent(groupstud_id=groupstuds.id, group_id=group.id)
         
-    # for groupteach in groupteachs:
-    #     rel = GroupTeacher(teachgroup_id=random.choice(teachgroups).id, groupteach_id=groupteach.id)
+    for groupteach in groupteachs:
+        rel = GroupTeacher(teachgroup_id=random.choice(teachgroups).id, groupteach_id=groupteach.id)
         
-    # for subjstud in subjstuds:
-    #     rel = SubjectStudent(studsubj_id=random.choice(studsubjs).id, subjstud_id=subjstud.id)   
+    for subjstud in subjstuds:
+        rel = SubjectStudent(studsubj_id=random.choice(studsubjs).id, subjstud_id=subjstud.id)   
    
         
         
