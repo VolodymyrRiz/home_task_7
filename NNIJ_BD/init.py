@@ -8,12 +8,14 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 import datetime
-from datetime import date_range
+from sqlalchemy.sql import date_range
+
 
 import pathlib
 from pathlib import Path
 from sqlalchemy.sql import select
-from sqlalchemy.sql import choice
+
+from sqlalchemy.exc import choice
 from sqlalchemy.orm import sessionmaker
 
 from sqlalchemy.exc import SQLAlchemyError

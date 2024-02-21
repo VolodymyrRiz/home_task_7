@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "nnij_pgnew"
+name = "nnij_pgbase1"
 version = "0.1.0"
 description = "BAse"
 authors = ["VolodymyrRiz <v.v.rizun@gmail.com>"]
