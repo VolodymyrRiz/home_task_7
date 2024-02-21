@@ -7,15 +7,17 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+import datetime
+from datetime import date_range
 
 import pathlib
 from pathlib import Path
-
+from sqlalchemy.sql import select
+from sqlalchemy.sql import choice
 from sqlalchemy.orm import sessionmaker
 
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import session
-
 
 from models import Teacher, Student, Group, Rating, Subject
 
@@ -47,12 +49,26 @@ def insert_group():
     session.commit()
     
 def insert_grade():
-    for _ in range(150):
-        grade = Rating(random.randrange(60, 100))
-        session.add(grade)
-    session.commit()
+    start_date = datetime.strptime("2023-09-01", "%Y-%m-%d")
+    end_date = datetime.strptime("2024-02-14", "%Y-%m-%d")
+    d_range = date_range(start=start_date, end=end_date)
+    discipline_id_select = session.scalars(select(Subject.id)).all()
+    student_id_select = session.scalars(select(Student.id)).all()
+
+    for d in d_range:
+        random_id_discipline = choice(discipline_id_select)
+        random_ids_student = [choice(student_id_select) for _ in range(150)]
+        for student_id in random_ids_student:
+            grade = Rating(
+                grade=random.randrange(1, 100),
+                date_of=d,
+                student_id=student_id,
+                subject_id=random_id_discipline,
+            )
+            session.add(grade)
+    session.commit()   
     
-    
+        
 if __name__ == '__main__':
     session = Session()   
 
