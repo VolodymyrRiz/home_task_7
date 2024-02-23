@@ -2,6 +2,11 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 Base = declarative_base()
 
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:nnij2024@localhost:5432/nnij_pgbase1"
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
 class Teacher(Base):
     __tablename__ = 'teachers'
     id = Column(Integer, primary_key=True)
