@@ -1,4 +1,4 @@
 -- Знайти які курси читає певний викладач.
-SELECT t.teacher, s.subject_ AS subjects
-FROM teacher_nnij AS t
-INNER JOIN subject_nnij AS s ON t.id = s.teacher_nnij_id
+SELECT t.teach_name, s.subj_name AS subjects
+FROM teachers AS t
+INNER JOIN subjects AS s ON t.id = s.teacher_id

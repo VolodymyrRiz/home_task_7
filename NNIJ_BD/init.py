@@ -64,7 +64,7 @@ def insert_subject():
     for _ in range(5):
         random_id_teacher = random.choice(teacher_id_select)
         subject = Subject(
-            subj_name=fake.name(),
+            subj_name=fake.job(),
             teacher_id = random_id_teacher,
             )
         db.add(subject)
